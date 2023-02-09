@@ -1,12 +1,11 @@
 package com.example.jmato
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.structuralEqualityPolicy
@@ -26,20 +25,25 @@ import com.example.jmato.ui.theme.Shapes
 
 @Composable
 fun HomeScreen() {
-    TopBar()
+    Column(Modifier.padding(10.dp)) {
+        TopBar()
+        SearchBar()
+        FilterList()
+        ZomatoGold()
+    }
 
 }
 @Composable
 fun TopBar() {
-    Row(horizontalArrangement = Arrangement.SpaceAround) {
+    Row(horizontalArrangement = Arrangement.SpaceAround, modifier = Modifier.fillMaxWidth()) {
         Image(painter = painterResource(id = R.drawable.ic_location), contentDescription = "Location icon",
-        modifier = Modifier.size(width = 40.dp, height = 40.dp))
+        modifier = Modifier.size(width = 30.dp, height = 30.dp))
         Column() {
             Text(text = "Home")
-            Text(text = "Bhagwat nagar, Bhootnath road")
+            Text(text = "Bhagwat nagar, Bhootnath road..")
         }
-        Image(painter = painterResource(id = R.drawable.ic_language), contentDescription = "language icon", Modifier.size(height = 40.dp, width = 60.dp) )
-        Image(painter = painterResource(id = R.drawable.ic_profile), contentDescription = "profile icon", Modifier.size(height = 40.dp, width = 60.dp))
+        Image(painter = painterResource(id = R.drawable.ic_language), contentDescription = "language icon", Modifier.size(height = 30.dp, width = 30.dp) )
+        Image(painter = painterResource(id = R.drawable.ic_profile), contentDescription = "profile icon", Modifier.size(height = 30.dp, width = 30.dp))
 
     }
 }
@@ -80,16 +84,52 @@ fun ZomatoGold() {
         verticalAlignment = Alignment.CenterVertically) {
             Column {
                 Text(text = "Introducing", color = Color.White)
-                Text(text = "Zomato Gold",color = Color.White,fontSize = 22.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.SansSerif)
+                Text(text = "Zomato Gold",color = Color.White,fontSize = 26.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.SansSerif)
                 Text(text = "You are invited to Join now", Modifier.padding(top = 10.dp),color = Color.White)
             }
-            Image(painter = painterResource(id = R.drawable.zomatogoldnew), contentDescription = "Zomato gold icon"
+            Image(painter = painterResource(id = R.drawable.zomatogoldnew), contentDescription = "Zomato gold icon", modifier = Modifier.size(100.dp)
             )
 
         }
 
 
     }
+}
+@Composable
+fun FilterList() {
+    Row(Modifier.horizontalScroll(rememberScrollState()).padding(20.dp)) {
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp) {
+            Row(horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                Image(painter = painterResource(id = R.drawable.ic_filter) , contentDescription = "filter icon",Modifier.size(20.dp))
+                Text(text = "Sort",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+                Image(painter = painterResource(id = R.drawable.ic_down) , contentDescription = "downward icon" )
+            }
+
+        }
+
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Pure Veg",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Fast Delivery",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Great Offers",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Rating 4.0+",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "New Arrivals",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Pure Veg",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+        Surface(shape = RoundedCornerShape(5.dp), color = Color.White, elevation = 10.dp, modifier = Modifier.padding(start = 10.dp)) {
+            Text(text = "Pure Veg",Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp))
+        }
+    }
+
 }
 
 @Preview(showBackground = true)
@@ -98,6 +138,7 @@ fun PreviewTopBar() {
     Column(Modifier.padding(10.dp)) {
         TopBar()
         SearchBar()
+        FilterList()
         ZomatoGold()
     }
 
